@@ -5,11 +5,21 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConfig } from './config/typeorm.config';
 import { TypeOrmExModule } from './typeorm-ex/typeorm-ex.module';
 import { TodoCardRepository } from './repositories/todo-card.repository';
-import { TodoCardController } from './controlles/todo-card/todo-card.controller';
+import { TodoCardController } from './controllers/todo-card/todo-card.controller';
 import { TodoCardService } from './services/todo-card/todo-card.service.';
 
 const repositories = [
   TodoCardRepository,
+]
+
+const controllers = [
+  AppController,
+  TodoCardController,
+]
+
+const providers = [
+  AppService,
+  TodoCardService,
 ]
 
 @Module({
@@ -17,7 +27,7 @@ const repositories = [
     TypeOrmModule.forRoot(typeormConfig),
     TypeOrmExModule.forCustomRepository([...repositories]),
   ],
-  controllers: [AppController, TodoCardController],
-  providers: [AppService, TodoCardService],
+  controllers: [...controllers],
+  providers: [...providers],
 })
 export class AppModule {}
