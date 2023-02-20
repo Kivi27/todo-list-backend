@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { TodoCardResponseDto } from '../dtos/response/todo-card.response.dto';
 import { TodoCardRequestDto } from '../dtos/request/todo-card.request.dto';
+import { TodoCardItem } from './todo-card-item.entity';
 
 @Entity()
 export class TodoCard {
@@ -9,6 +10,9 @@ export class TodoCard {
 
   @Column()
   title: string;
+
+  @OneToMany(() => TodoCardItem, todoCardItem => todoCardItem.todoCard)
+  todoCardItems: TodoCard[]
 
   public static toDto(todoCard: TodoCard): TodoCardResponseDto {
     return {
