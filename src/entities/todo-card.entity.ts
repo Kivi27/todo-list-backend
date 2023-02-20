@@ -4,8 +4,8 @@ import { TodoCardRequestDto } from '../dtos/request/todo-card.request.dto';
 
 @Entity()
 export class TodoCard {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column()
   title: string;

@@ -1,4 +1,4 @@
 export class TodoCardResponseDto {
-  id: number;
+  id: string;
   title: string;
 }
