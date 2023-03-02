@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { TodoCardRepository } from '../../repositories/todo-card.repository';
 import { TodoCardRequestDto } from '../../dtos/request/todo-card.request.dto';
 import { TodoCardResponseDto } from '../../dtos/response/todo-card.response.dto';
+import { TodoCard } from '../../entities/todo-card.entity';
 
 @Injectable()
 export class TodoCardService {
@@ -10,9 +11,14 @@ export class TodoCardService {
   }
 
   public async getAll(): Promise<TodoCardResponseDto[]> {
-    return await this.todoCardRepository.find();
+    const todoCards: TodoCard[] = await this.todoCardRepository.findAll();
+
+    return todoCards.map((todoCard: TodoCard) => TodoCard.toDto(todoCard));
   }
   public async createNewTodoCard(todoCardRequest: TodoCardRequestDto) {
-    return await this.todoCardRepository.save(todoCardRequest);
+    const todoCardFromTdo: TodoCard = TodoCard.fromDto(todoCardRequest);
+    const todoCard: TodoCard = await this.todoCardRepository.save(todoCardFromTdo);
+
+    return TodoCard.toDto(todoCard);
   }
 }
