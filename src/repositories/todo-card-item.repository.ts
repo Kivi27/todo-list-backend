@@ -4,5 +4,4 @@ import { TodoCardItem } from '../entities/todo-card-item.entity';
 
 @CustomRepository(TodoCardItem)
 export class TodoCardItemRepository extends Repository<TodoCardItem> {
-
 }
