@@ -15,10 +15,30 @@ export class TodoCardService {
 
     return todoCards.map((todoCard: TodoCard) => TodoCard.toDto(todoCard));
   }
-  public async createNewTodoCard(todoCardRequest: TodoCardRequestDto) {
+
+  public async findById(id: string): Promise<TodoCardResponseDto> {
+    const todoCard: TodoCard = await this.todoCardRepository.findById(id);
+    return TodoCard.toDto(todoCard);
+  }
+
+  public async createNewTodoCard(todoCardRequest: TodoCardRequestDto): Promise<TodoCardResponseDto> {
     const todoCardFromTdo: TodoCard = TodoCard.fromDto(todoCardRequest);
     const todoCard: TodoCard = await this.todoCardRepository.save(todoCardFromTdo);
 
     return TodoCard.toDto(todoCard);
+  }
+
+  public async updateById(todoCardId: string, todoCardRequest: TodoCardRequestDto): Promise<TodoCardResponseDto> {
+    const todoCardFromDto: TodoCard = TodoCard.fromDto(todoCardRequest);
+    const targetTodoCard: TodoCard = await this.todoCardRepository.findById(todoCardId);
+
+    targetTodoCard.title = todoCardFromDto.title;
+
+    return await this.todoCardRepository.save(targetTodoCard);
+  }
+
+  public async deleteById(todoId: string): Promise<void> {
+    const targetTodoCard = await this.todoCardRepository.findById(todoId);
+    await this.todoCardRepository.delete(targetTodoCard);
   }
 }

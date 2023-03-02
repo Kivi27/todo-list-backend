@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { TodoCardRequestDto } from '../../dtos/request/todo-card.request.dto';
 import { TodoCardService } from '../../services/todo-card/todo-card.service.';
 import { TodoCardResponseDto } from '../../dtos/response/todo-card.response.dto';
@@ -14,8 +14,26 @@ export class TodoCardController {
     return await this.todoCardService.getAll();
   }
 
+  @Get(':id')
+  public async findById(@Param('id') id: string): Promise<TodoCardResponseDto> {
+    return await this.todoCardService.findById(id);
+  }
+
   @Post()
-  public async create(@Body() todoCardRequest: TodoCardRequestDto) {
-    await this.todoCardService.createNewTodoCard(todoCardRequest);
+  public async create(@Body() todoCardRequest: TodoCardRequestDto): Promise<TodoCardResponseDto> {
+    return await this.todoCardService.createNewTodoCard(todoCardRequest);
+  }
+
+  @Put(':id')
+  public async updateBuId(
+      @Param('id') id:string,
+      @Body() todoCardRequest: TodoCardRequestDto
+    ): Promise<TodoCardResponseDto> {
+    return await this.todoCardService.updateById(id, todoCardRequest);
+  }
+
+  @Delete(':id')
+  public async deleteById(@Param('id') id:string): Promise<void> {
+    return await this.todoCardService.deleteById(id);
   }
 }
