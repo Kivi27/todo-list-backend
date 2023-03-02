@@ -12,19 +12,19 @@ export class TodoCard {
   title: string;
 
   @OneToMany(() => TodoCardItem, todoCardItem => todoCardItem.todoCard)
-  todoCardItems: TodoCard[]
+  todoCardItems: TodoCardItem[]
 
   public static toDto(todoCard: TodoCard): TodoCardResponseDto {
     return {
       id: todoCard.id,
       title: todoCard.title,
+      todoCardItems: (todoCard.todoCardItems || []).map((todoCardItem) => TodoCardItem.toDto(todoCardItem)),
     }
   }
 
   public static fromDto(todoCardRequest: TodoCardRequestDto): TodoCard {
     const todoCard = new TodoCard();
     todoCard.title = todoCardRequest.title;
-
     return todoCard;
   }
 }
