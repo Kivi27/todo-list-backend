@@ -15,7 +15,7 @@ export class TodoCardItem {
   todoCard: TodoCard;
 
   public static toDto(todoCardItem: TodoCardItem): TodoCardItemResponseDto {
-    return {
+    return todoCardItem && {
       id: todoCardItem.id,
       description: todoCardItem.description,
       todoCard: TodoCard.toDto(todoCardItem.todoCard),

@@ -15,7 +15,7 @@ export class TodoCard {
   todoCardItems: TodoCardItem[]
 
   public static toDto(todoCard: TodoCard): TodoCardResponseDto {
-    return {
+    return todoCard && {
       id: todoCard.id,
       title: todoCard.title,
       todoCardItems: (todoCard.todoCardItems || []).map((todoCardItem: TodoCardItem) => TodoCardItem.toDto(todoCardItem)),

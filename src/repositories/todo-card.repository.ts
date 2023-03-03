@@ -5,7 +5,11 @@ import { Repository } from 'typeorm';
 @CustomRepository(TodoCard)
 export class TodoCardRepository extends Repository<TodoCard> {
   public async findAll(): Promise<TodoCard[]> {
-    return await this.find();
+    return await this.find({
+      relations: {
+        todoCardItems: true,
+      },
+    });
   }
 
   public async findById(todoCardId: string): Promise<TodoCard> {
