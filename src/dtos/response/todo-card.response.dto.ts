@@ -1,4 +1,7 @@
+import { TodoCardItemResponseDto } from './todo-card-item.response.dto';
+
 export class TodoCardResponseDto {
-  id: string;
-  title: string;
+  public id: string;
+  public title: string;
+  public todoCardItems: TodoCardItemResponseDto[];
 }

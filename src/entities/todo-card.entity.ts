@@ -18,7 +18,7 @@ export class TodoCard {
     return {
       id: todoCard.id,
       title: todoCard.title,
-      todoCardItems: (todoCard.todoCardItems || []).map((todoCardItem) => TodoCardItem.toDto(todoCardItem)),
+      todoCardItems: (todoCard.todoCardItems || []).map((todoCardItem: TodoCardItem) => TodoCardItem.toDto(todoCardItem)),
     }
   }
 
