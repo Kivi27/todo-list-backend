@@ -4,4 +4,11 @@ import { TodoCardItem } from '../entities/todo-card-item.entity';
 
 @CustomRepository(TodoCardItem)
 export class TodoCardItemRepository extends Repository<TodoCardItem> {
+  public async findAll(): Promise<TodoCardItem[]> {
+    return await this.find({
+      relations: {
+        todoCard: true,
+      },
+    });
+  }
 }
