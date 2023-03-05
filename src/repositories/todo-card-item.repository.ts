@@ -11,4 +11,15 @@ export class TodoCardItemRepository extends Repository<TodoCardItem> {
       },
     });
   }
+
+  public  async findById(todoCardItemId: string): Promise<TodoCardItem> {
+    return await this.findOne({
+      relations: {
+        todoCard: true,
+      },
+      where: {
+        id: todoCardItemId,
+      },
+    });
+  }
 }
