@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { TodoCardRequestDto } from '../../dtos/request/todo-card.request.dto';
 import { TodoCardService } from '../../services/todo-card/todo-card.service.';
 import { TodoCardResponseDto } from '../../dtos/response/todo-card.response.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('todo cards')
 @Controller('todo-cards')
 export class TodoCardController {
 
