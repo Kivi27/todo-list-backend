@@ -5,7 +5,7 @@ import { TodoCardResponseDto } from '../../dtos/response/todo-card.response.dto'
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('todo cards')
-@Controller('todo-cards')
+@Controller('api/todo-cards')
 export class TodoCardController {
 
   constructor(private readonly todoCardService: TodoCardService) {

@@ -10,6 +10,8 @@ import { TodoCardService } from './services/todo-card/todo-card.service.';
 import { TodoCardItemController } from './controllers/todo-card-item/todo-card-item.controller';
 import { TodoCardItemService } from './services/todo-card-item/todo-card-item.service';
 import { TodoCardItemRepository } from './repositories/todo-card-item.repository';
+import { BaseService } from './services/base.service';
+import { UnitOfWorkService } from './services/unit-of-work.service';
 
 const repositories = [
   TodoCardRepository,
@@ -26,6 +28,8 @@ const providers = [
   AppService,
   TodoCardService,
   TodoCardItemService,
+  BaseService,
+  UnitOfWorkService,
 ]
 
 @Module({
