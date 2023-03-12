@@ -12,8 +12,12 @@ import { TodoCardItemService } from './services/todo-card-item/todo-card-item.se
 import { TodoCardItemRepository } from './repositories/todo-card-item.repository';
 import { BaseService } from './services/base.service';
 import { UnitOfWorkService } from './services/unit-of-work.service';
+import { UserRepository } from './repositories/user.repository';
+import { UserController } from './controllers/user/user.controller';
+import { UserService } from './services/user/user.service';
 
 const repositories = [
+  UserRepository,
   TodoCardRepository,
   TodoCardItemRepository,
 ]
@@ -22,14 +26,16 @@ const controllers = [
   AppController,
   TodoCardController,
   TodoCardItemController,
+  UserController,
 ]
 
 const providers = [
   AppService,
+  UnitOfWorkService,
+  BaseService,
   TodoCardService,
   TodoCardItemService,
-  BaseService,
-  UnitOfWorkService,
+  UserService,
 ]
 
 @Module({

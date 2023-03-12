@@ -7,6 +7,7 @@ export class TodoCardRepository extends Repository<TodoCard> {
   public async findAll(): Promise<TodoCard[]> {
     return await this.find({
       relations: {
+        user: true,
         todoCardItems: true,
       },
     });

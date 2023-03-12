@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { TodoCardRepository } from '../repositories/todo-card.repository';
 import { TodoCardItemRepository } from '../repositories/todo-card-item.repository';
 import { DataSource } from 'typeorm';
+import { UserRepository } from '../repositories/user.repository';
 
 @Injectable()
 export class UnitOfWorkService {
@@ -10,6 +11,7 @@ export class UnitOfWorkService {
     private readonly dataSource: DataSource,
     @InjectRepository(TodoCardRepository) public readonly todoCardRepository: TodoCardRepository,
     @InjectRepository(TodoCardItemRepository) public readonly todoCardItemRepository: TodoCardItemRepository,
+    @InjectRepository(UserRepository) public readonly userRepository: UserRepository,
   ) {}
 
   public async doWork<T>(work: () => T): Promise<T> {
