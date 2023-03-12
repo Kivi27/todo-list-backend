@@ -11,7 +11,9 @@ export class TodoCardItem {
   @Column()
   description: string;
 
-  @ManyToOne(() => TodoCard, todoCard => todoCard.todoCardItems)
+  @ManyToOne(() => TodoCard, todoCard => todoCard.todoCardItems, {
+    onDelete: 'CASCADE',
+  })
   todoCard: TodoCard;
 
   public static toDto(todoCardItem: TodoCardItem): TodoCardItemResponseDto {

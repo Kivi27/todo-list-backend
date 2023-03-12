@@ -15,7 +15,9 @@ export class TodoCard {
   @OneToMany(() => TodoCardItem, todoCardItem => todoCardItem.todoCard)
   todoCardItems: TodoCardItem[]
 
-  @ManyToOne( () => User, user => user.todoCards)
+  @ManyToOne( () => User, user => user.todoCards, {
+    onDelete: 'CASCADE',
+  })
   user: User;
 
   public static toDto(todoCard: TodoCard): TodoCardResponseDto {
