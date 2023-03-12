@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class TodoCardRequestDto {
+export class UserRequestDto {
   @ApiProperty()
-  public title: string;
+  name: string;
 
   @ApiProperty()
-  public userId: string;
+  lastName: string;
 }
