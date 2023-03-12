@@ -11,4 +11,15 @@ export class UserRepository extends Repository<User> {
       }
     });
   }
+
+  public async findById(userId: string): Promise<User> {
+    return await this.findOne({
+      relations: {
+        todoCards: true,
+      },
+      where: {
+        id: userId
+      },
+    });
+  }
 }
