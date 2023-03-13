@@ -7,5 +7,7 @@ export class TodoCardItemResponseDto {
   @ApiProperty()
   public description: string;
   @ApiProperty()
+  public status: boolean;
+  @ApiProperty()
   public todoCard: TodoCardResponseDto;
 }

@@ -6,20 +6,26 @@ import { TodoCardItemRequestDto } from '../dtos/request/todo-card-item.request.d
 @Entity()
 export class TodoCardItem {
   @PrimaryGeneratedColumn("uuid")
-  id: string
+  public id: string
 
   @Column()
-  description: string;
+  public description: string;
+
+  @Column({
+    default: false,
+  })
+  public status: boolean;
 
   @ManyToOne(() => TodoCard, todoCard => todoCard.todoCardItems, {
     onDelete: 'CASCADE',
   })
-  todoCard: TodoCard;
+  public todoCard: TodoCard;
 
   public static toDto(todoCardItem: TodoCardItem): TodoCardItemResponseDto {
     return todoCardItem && {
       id: todoCardItem.id,
       description: todoCardItem.description,
+      status: todoCardItem.status,
       todoCard: TodoCard.toDto(todoCardItem.todoCard),
     }
   }
@@ -27,6 +33,7 @@ export class TodoCardItem {
   public static fromDto(dto: TodoCardItemRequestDto): TodoCardItem {
     const todoCardItem = new TodoCardItem();
     todoCardItem.description = dto.description;
+    todoCardItem.status = dto.status;
     todoCardItem.todoCard = {id: dto.todoCardId } as TodoCard;
 
     return todoCardItem;

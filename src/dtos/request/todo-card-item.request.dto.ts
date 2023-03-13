@@ -5,4 +5,6 @@ export class TodoCardItemRequestDto {
   public description: string;
   @ApiProperty()
   public todoCardId: string;
+  @ApiProperty()
+  public status: boolean;
 }
